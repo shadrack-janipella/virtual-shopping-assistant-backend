@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
 
-router.post('/add', async (req, res) => {
+
+router.post('/', async (req, res) => {  
   try {
     const { name, description, price, image } = req.body;
 
@@ -20,7 +21,8 @@ router.post('/add', async (req, res) => {
   }
 });
 
-router.put('/update/:id', async (req, res) => {
+
+router.put('/:id', async (req, res) => {  
   try {
     const { id } = req.params;
     const { name, description, price, image } = req.body;
@@ -42,7 +44,8 @@ router.put('/update/:id', async (req, res) => {
   }
 });
 
-router.delete('/delete/:id', async (req, res) => {
+
+router.delete('/products/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const deletedProduct = await Product.findByIdAndDelete(id);
@@ -58,7 +61,7 @@ router.delete('/delete/:id', async (req, res) => {
   }
 });
 
-router.get('/all', async (req, res) => {
+router.get('/', async (req, res) => {  
   try {
     const products = await Product.find();
     res.json(products);
